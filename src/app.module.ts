@@ -4,10 +4,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { PostsModule } from './posts/posts.module';
-import { LeadsModule } from './leads/leads.module';
 import { User } from './users/user.entity';
 import { Post } from './posts/post.entity';
-import { Lead } from './leads/lead.entity';
 
 @Module({
   imports: [
@@ -23,7 +21,7 @@ import { Lead } from './leads/lead.entity';
         username: configService.get<string>('DB_USERNAME'),
         password: configService.get<string>('DB_PASSWORD'),
         database: configService.get<string>('DB_DATABASE'),
-        entities: [User, Post, Lead],
+        entities: [User, Post],
         synchronize: false,
       }),
       inject: [ConfigService],
@@ -31,7 +29,6 @@ import { Lead } from './leads/lead.entity';
     AuthModule,
     UsersModule,
     PostsModule,
-    LeadsModule,
   ],
 })
 export class AppModule {}
