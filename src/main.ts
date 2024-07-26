@@ -21,11 +21,11 @@ async function bootstrap() {
 
   const app = await NestFactory.create(AppModule, new ExpressAdapter(expressApp));
 
-  app.setGlobalPrefix('api/v2');
+  app.setGlobalPrefix('api');
 
   // Configurar CORS
   app.enableCors({
-    origin: '*', // Especifique o domínio permitido
+    origin: 'nerdking.com.br', // Especifique o domínio permitido
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
