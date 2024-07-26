@@ -25,7 +25,7 @@ async function bootstrap() {
 
   // Configurar CORS
   app.enableCors({
-    origin: 'nerdking.com.br', // Especifique o domínio permitido
+    origin: 'https://brunoholanda.com', // Especifique o domínio permitido
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
