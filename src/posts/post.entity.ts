@@ -18,11 +18,5 @@ export class Post {
   description: string;
 
   @Column()
-  skills: string;
-
-  @Column()
-  project_link: string;
-
-  @Column()
-  repo_link: string;
+  tags: string;
 }
