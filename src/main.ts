@@ -25,13 +25,13 @@ async function bootstrap() {
 
   // Configurar CORS
   app.enableCors({
-    origin: ['https://nerdking.com.br', 'https://brunoholanda.com'], // Domínios permitidos
+    origin: 'https://nerdking.com.br', // Especifique o domínio permitido
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });
 
   const host = process.env.HOST || '0.0.0.0';
-  const port = parseInt(process.env.PORT, 10) || 3347;
+  const port = parseInt(process.env.PORT, 10) || 3357;
 
   await app.listen(port, host);
 
