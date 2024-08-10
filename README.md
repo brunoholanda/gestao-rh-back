@@ -24,3 +24,17 @@ docker build --no-cache -f Dockerfile -t backend:latest .
 
 docker-compose -f docker-compose-db.yml up -d
 docker-compose -f docker-compose.yml up -d
+
+
+{
+  "scripts": {
+    "typeorm": "npx typeorm",
+    "migration:run": "npx typeorm migration:run -d ./dist/data-source.js",
+    "migration:revert": "npx typeorm migration:revert -d ./dist/data-source.js",
+    "migration:create": "npx typeorm migration:create -n"
+  }
+}
+
+npm run migration:run
+
+

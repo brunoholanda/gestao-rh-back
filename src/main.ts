@@ -25,7 +25,7 @@ async function bootstrap() {
 
   // Configurar CORS
   app.enableCors({
-    origin: 'https://api.nerdking.com.br', // Especifique o domínio permitido
+    origin: '*', // Especifique o domínio permitido
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
     credentials: true,
   });

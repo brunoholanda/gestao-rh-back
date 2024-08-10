@@ -1,7 +1,6 @@
 import { DataSource } from 'typeorm';
 import { ConfigService } from '@nestjs/config';
 import { User } from './users/user.entity';
-import { Post } from './posts/post.entity';
 import * as dotenv from 'dotenv';
 
 // Carrega as variáveis de ambiente do arquivo .env
@@ -16,8 +15,8 @@ export const AppDataSource = new DataSource({
   username: configService.get<string>('DB_USERNAME'),
   password: configService.get<string>('DB_PASSWORD'),
   database: configService.get<string>('DB_DATABASE'),
-  entities: [User, Post],
-  migrations: ['dist/migration/*.js'],
+  entities: [User],
+  migrations: ['dist/migrations/*.js'],
   synchronize: false,
 });
 
