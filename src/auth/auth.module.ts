@@ -7,10 +7,12 @@ import { LocalStrategy } from './local.strategy';
 import { JwtStrategy } from './jwt.strategy';
 import { AuthController } from './auth.controller';
 import { ConfigModule, ConfigService } from '@nestjs/config';
+import { CompaniesModule } from 'src/companies/company.module';
 
 @Module({
   imports: [
     UsersModule,
+    CompaniesModule, // Adicione CompaniesModule aqui
     PassportModule,
     JwtModule.registerAsync({
       imports: [ConfigModule],

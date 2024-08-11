@@ -7,7 +7,7 @@ export class UpdateUsersAndCreateCompaniesTable1653661244318 implements Migratio
         "id" SERIAL PRIMARY KEY,
         "company_name" VARCHAR(255) NOT NULL,
         "cnpj" VARCHAR(20) NOT NULL,
-        "endereço" VARCHAR(255) NOT NULL,
+        "endereco" VARCHAR(255) NOT NULL,
         "telefone" VARCHAR(20) NOT NULL
       );
     `);

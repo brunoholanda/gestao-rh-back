@@ -35,6 +35,8 @@ docker-compose -f docker-compose.yml up -d
   }
 }
 
+ npm run typeorm migration:create src/migrations/CreateFuncHistoryTable
+ 
 npm run migration:run
 
 

@@ -1,7 +1,22 @@
 import { Injectable, NotFoundException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { ILike, Repository } from 'typeorm';
 import { Funcionario } from './funcionario.entity';
+
+interface PaginatedResult<T> {
+  data: T[];
+  total: number;
+}
+
+interface PaginationOptions {
+  page: number;
+  limit: number;
+}
+
+interface SearchOptions extends PaginationOptions {
+  searchTerm: string;
+  companyId: number;
+}
 
 @Injectable()
 export class FuncionariosService {
@@ -10,8 +25,24 @@ export class FuncionariosService {
     private readonly funcionarioRepository: Repository<Funcionario>,
   ) {}
 
-  async findAll(): Promise<Funcionario[]> {
-    return await this.funcionarioRepository.find();
+  async findAllPaginated({ page, limit }: PaginationOptions): Promise<PaginatedResult<Funcionario>> {
+    const [data, total] = await this.funcionarioRepository.findAndCount({
+      skip: (page - 1) * limit,
+      take: limit,
+    });
+    return { data, total };
+  }
+
+  async search({ searchTerm, page, limit, companyId }: SearchOptions): Promise<PaginatedResult<Funcionario>> {
+    const [data, total] = await this.funcionarioRepository.findAndCount({
+      where: {
+        nome: ILike(`%${searchTerm}%`),
+        company: { id: companyId },
+      },
+      skip: (page - 1) * limit,
+      take: limit,
+    });
+    return { data, total };
   }
 
   async findOne(id: number): Promise<Funcionario> {
